@@ -9,7 +9,7 @@ import streamlit as st
 # CONFIG
 # ============================================================
 
-API_BASE = "http://127.0.0.1:8000"
+API_BASE = "https://twin-forge-digital-twin.vercel.app"
 
 st.set_page_config(
     page_title="Twin Forge | Digital Twin",
