@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Twin Forge | Aero Engine Digital Twin</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">TF</div>
+
+          <div>
+            <div class="brand-name">TWIN FORGE</div>
+            <div class="brand-subtitle">AERO DIGITAL TWIN</div>
+          </div>
+        </div>
+
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span>Digital Twin Online</span>
+        </div>
+
+        <nav>
+          <a class="nav-item active">
+            <span>◈</span>
+            Mission Overview
+          </a>
+
+          <a class="nav-item">
+            <span>◉</span>
+            Engine Health
+          </a>
+
+          <a class="nav-item">
+            <span>⌁</span>
+            Telemetry
+          </a>
+
+          <a class="nav-item">
+            <span>⚠</span>
+            Fault Intelligence
+          </a>
+
+          <a class="nav-item">
+            <span>◫</span>
+            Predictions
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="engine-id">
+            <div class="small-label">ENGINE ID</div>
+            <div class="engine-value">UAV-AP-001</div>
+          </div>
+
+          <div class="mission-box">
+            <div class="small-label">MISSION PHASE</div>
+            <div id="sidebarMission">CRUISE</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ================= MAIN ================= -->
+
+      <main class="main">
+        <!-- HEADER -->
+
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">REAL-TIME ENGINE INTELLIGENCE</div>
+
+            <h1>Mission Control</h1>
+
+            <p class="subtitle">
+              AI-enabled digital twin for aero piston engine health, fault
+              prediction and mission reliability.
+            </p>
+          </div>
+
+          <div class="top-actions">
+            <div class="live-indicator">
+              <span class="pulse"></span>
+              LIVE
+            </div>
+
+            <div class="timestamp" id="timestamp">--:--:--</div>
+          </div>
+        </header>
+
+        <!-- ================= HERO STATUS ================= -->
+
+        <section class="hero-grid">
+          <div class="hero-status">
+            <div class="section-label">CURRENT ENGINE CONDITION</div>
+
+            <div class="hero-content">
+              <div>
+                <div class="condition-label">SYSTEM STATUS</div>
+
+                <div id="systemStatus" class="condition-value healthy">
+                  HEALTHY
+                </div>
+
+                <div class="condition-description" id="conditionDescription">
+                  Engine operating within expected limits.
+                </div>
+              </div>
+
+              <div class="health-ring">
+                <svg viewBox="0 0 160 160">
+                  <circle class="ring-bg" cx="80" cy="80" r="65" />
+
+                  <circle
+                    id="healthCircle"
+                    class="ring-progress"
+                    cx="80"
+                    cy="80"
+                    r="65"
+                  />
+                </svg>
+
+                <div class="health-center">
+                  <div id="healthValue">100</div>
+
+                  <span>HEALTH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MISSION CARD -->
+
+          <div class="mission-card">
+            <div class="section-label">MISSION PROFILE</div>
+
+            <div class="mission-phase" id="missionPhase">CRUISE</div>
+
+            <div class="mission-grid">
+              <div>
+                <span>MISSION TIME</span>
+                <strong id="missionTime">01:24:32</strong>
+              </div>
+
+              <div>
+                <span>ENGINE HOURS</span>
+                <strong id="engineHours">250 h</strong>
+              </div>
+
+              <div>
+                <span>LOAD</span>
+                <strong id="engineLoad">65%</strong>
+              </div>
+
+              <div>
+                <span>RPM</span>
+                <strong id="engineRPM">4200</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= KPI CARDS ================= -->
+
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span>REMAINING USEFUL LIFE</span>
+              <span class="kpi-icon">◷</span>
+            </div>
+
+            <div class="kpi-value">
+              <span id="rulValue">1500</span>
+              <small>hours</small>
+            </div>
+
+            <div class="kpi-meta positive">Predicted operational life</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span>MISSION RELIABILITY</span>
+              <span class="kpi-icon">◆</span>
+            </div>
+
+            <div class="kpi-value">
+              <span id="reliabilityValue">98.5</span>
+              <small>%</small>
+            </div>
+
+            <div class="kpi-meta positive">Mission completion probability</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span>FAULT PROBABILITY</span>
+              <span class="kpi-icon warning">⚠</span>
+            </div>
+
+            <div class="kpi-value">
+              <span id="faultProbability">2.1</span>
+              <small>%</small>
+            </div>
+
+            <div class="kpi-meta">Current anomaly likelihood</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span>DEGRADATION</span>
+              <span class="kpi-icon">↘</span>
+            </div>
+
+            <div class="kpi-value">
+              <span id="degradationValue">4.8</span>
+              <small>%</small>
+            </div>
+
+            <div class="kpi-meta">Long-term condition</div>
+          </div>
+        </section>
+
+        <!-- ================= TELEMETRY ================= -->
+
+        <section class="content-grid">
+          <div class="panel telemetry-panel">
+            <div class="panel-header">
+              <div>
+                <div class="section-label">LIVE TELEMETRY</div>
+
+                <h2>Engine Parameters</h2>
+              </div>
+
+              <div class="data-status">
+                <span></span>
+                STREAMING
+              </div>
+            </div>
+
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span>RPM</span>
+                <strong id="telemetryRPM">4200</strong>
+                <small>rev/min</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>TORQUE</span>
+                <strong id="telemetryTorque">65</strong>
+                <small>Nm</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>OIL TEMP</span>
+                <strong id="oilTemp">92</strong>
+                <small>°C</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>CYLINDER HEAD</span>
+                <strong id="cylinderTemp">145</strong>
+                <small>°C</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>EGT</span>
+                <strong id="egt">680</strong>
+                <small>°C</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>OIL PRESSURE</span>
+                <strong id="oilPressure">4.2</strong>
+                <small>bar</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>FUEL FLOW</span>
+                <strong id="fuelFlow">18</strong>
+                <small>L/h</small>
+              </div>
+
+              <div class="telemetry-item">
+                <span>VIBRATION</span>
+                <strong id="vibration">0.35</strong>
+                <small>g</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= FAULT INTELLIGENCE ================= -->
+
+          <div class="panel fault-panel">
+            <div class="panel-header">
+              <div>
+                <div class="section-label">AI FAULT INTELLIGENCE</div>
+
+                <h2>Diagnostic Assessment</h2>
+              </div>
+
+              <div class="ai-badge">AI</div>
+            </div>
+
+            <div class="fault-status">
+              <div class="fault-indicator" id="faultIndicator">✓</div>
+
+              <div>
+                <div class="fault-label">DETECTED CONDITION</div>
+
+                <div class="fault-type" id="faultType">NORMAL</div>
+
+                <div class="fault-confidence">
+                  Confidence:
+                  <strong id="faultConfidence"> 99% </strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="explanation-box">
+              <div class="explanation-title">WHY THIS ASSESSMENT?</div>
+
+              <div id="faultExplanation">
+                No known fault condition detected.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PREDICTION + ALERT ================= -->
+
+        <section class="bottom-grid">
+          <div class="panel prediction-panel">
+            <div class="panel-header">
+              <div>
+                <div class="section-label">PREDICTIVE ANALYTICS</div>
+
+                <h2>Health Trajectory</h2>
+              </div>
+
+              <span class="prediction-tag"> RUL MODEL </span>
+            </div>
+
+            <div class="chart-container">
+              <svg
+                id="healthChart"
+                viewBox="0 0 800 240"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-opacity="0.35" />
+
+                    <stop offset="100%" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+
+                <path id="chartArea" class="chart-area" d="" />
+
+                <path id="chartLine" class="chart-line" d="" />
+              </svg>
+
+              <div class="chart-axis">
+                <span>0h</span>
+                <span>500h</span>
+                <span>1000h</span>
+                <span>1500h</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALERT PANEL -->
+
+          <div class="panel alert-panel">
+            <div class="panel-header">
+              <div>
+                <div class="section-label">SYSTEM EVENTS</div>
+
+                <h2>Intelligent Alerts</h2>
+              </div>
+            </div>
+
+            <div id="alerts">
+              <div class="alert-item normal">
+                <div class="alert-icon">✓</div>
+
+                <div>
+                  <strong> System Nominal </strong>
+
+                  <span> All monitored parameters within limits. </span>
+                </div>
+              </div>
+
+              <div class="alert-item">
+                <div class="alert-icon">◉</div>
+
+                <div>
+                  <strong> Predictive Model Active </strong>
+
+                  <span> RUL estimation updated. </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+          <div>TWIN FORGE • PHYSICS-INFORMED DIGITAL TWIN</div>
+
+          <div>
+            AI HEALTH MONITORING • FAULT PREDICTION • MISSION RELIABILITY
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
